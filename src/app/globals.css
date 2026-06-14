@@ -1,0 +1,99 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-color: #0052d9;
+  --brand-light: #e8f4ff;
+  --bg-primary: #f5f6fa;
+  --sidebar-width: 220px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg-primary);
+  color: #333;
+}
+
+/* TDesign overrides */
+.t-layout__sider {
+  background: #001529 !important;
+}
+
+.t-menu--dark .t-menu__item {
+  color: rgba(255,255,255,0.65) !important;
+}
+
+.t-menu--dark .t-menu__item.t-is-active {
+  color: #fff !important;
+  background: var(--brand-color) !important;
+}
+
+.t-menu--dark .t-menu__item:hover {
+  color: #fff !important;
+  background: rgba(255,255,255,0.08) !important;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Score badge */
+.score-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 16px;
+}
+.score-high { background: #e8f8ef; color: #00a870; border: 2px solid #00a870; }
+.score-mid { background: #fff8e8; color: #ed7b2f; border: 2px solid #ed7b2f; }
+.score-low { background: #ffe8e8; color: #e34d59; border: 2px solid #e34d59; }
+
+/* Status tag */
+.status-pass { background: #e8f8ef; color: #00a870; border: 1px solid #00a870; }
+.status-pending { background: #fff8e8; color: #ed7b2f; border: 1px solid #ed7b2f; }
+.status-reject { background: #ffe8e8; color: #e34d59; border: 1px solid #e34d59; }
+.status-offer { background: #e8f4ff; color: #0052d9; border: 1px solid #0052d9; }
+.status-hired { background: #f0e8ff; color: #7c3aed; border: 1px solid #7c3aed; }
+
+/* Gradient cards */
+.gradient-blue { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+.gradient-green { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+.gradient-orange { background: linear-gradient(135deg, #F2994A 0%, #F2C94C 100%); }
+.gradient-purple { background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%); }
+
+/* Activity dots */
+.activity-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
