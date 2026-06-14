@@ -147,7 +147,7 @@ function buildEvaluationBlock(candidate: Candidate, screening?: ScreeningResult 
         ? `${candidate.name} 的求职动机基本明确，但 ${potentialNote || "对岗位挑战和成长路径的理解还需进一步澄清"}。`
         : `${candidate.name} 在动机或稳定性上存在一定风险，建议重点确认职业诉求、管理期待和未来 1-2 年规划。`;
 
-  const decisionFromStatus: Record<CandidateStatus, "pass" | "pending" | "reject"> = { passed: "pass", pending: "pending", rejected: "reject", offer: "pass", hired: "pass" };  const finalDecision = decisionFromStatus[selected?.status ?? candidate.status] ?? (tier === "excellent" ? "pass" : tier === "watch" || tier === "good" ? "pending" : "reject");
+  const finalDecision: "pass" | "pending" | "reject" = tier === "excellent" ? "pass" : tier === "good" ? "pending" : "reject";
 
   const { ai, hr } = buildAdvice(candidate, screening);
 
@@ -193,7 +193,9 @@ export default function CandidatesPage() {
   if (!mounted) return null;
 
   const selectedScreening = selected?.screeningResult ?? null;
-  const selectedEvaluation = selected ? buildEvaluationBlock(selected, selectedScreening) : null;
+  const selectedEvaluationRaw = selected ? buildEvaluationBlock(selected, selectedScreening) : null;
+  const statusDecisionMap: Record<CandidateStatus, "pass" | "pending" | "reject"> = { passed: "pass", pending: "pending", rejected: "reject", offer: "pass", hired: "pass" };
+  const selectedEvaluation = selectedEvaluationRaw && selected ? { ...selectedEvaluationRaw, finalDecision: statusDecisionMap[selected.status] ?? selectedEvaluationRaw.finalDecision } : null;
   const selectedFive = selected ? scoreToFive(selected.score) : 0;
   const selectedQuestions = mockQuestions.slice(0, 5);
 
