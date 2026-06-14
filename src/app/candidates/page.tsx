@@ -147,6 +147,12 @@ export default function CandidatesPage() {
   useEffect(() => {
     setCandidates(mockCandidates);
     setMounted(true);
+    const openId = sessionStorage.getItem("openCandidateId");
+    if (openId) {
+      sessionStorage.removeItem("openCandidateId");
+      const found = mockCandidates.find(c => c.id === openId);
+      if (found) setSelected(found);
+    }
   }, []);
 
   const filtered = useMemo(() => {
